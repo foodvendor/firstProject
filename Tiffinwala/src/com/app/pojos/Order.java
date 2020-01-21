@@ -1,7 +1,9 @@
 package com.app.pojos;
 
 import java.time.LocalDate;
-
+import javax.persistence.*;
+@Entity
+@Table(name = "order")
 public class Order {
 	private Integer orderId, studentId, branchId, addressId, menuId;
 	private LocalDate date;
@@ -20,7 +22,8 @@ public class Order {
 		this.menuId = menuId;
 		this.date = date;
 	}
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getOrderId() {
 		return orderId;
 	}

@@ -1,13 +1,18 @@
 package com.app.pojos;
 
 import java.time.LocalDate;
-
+import javax.persistence.*;
+@Entity
+@Table(name = "bill")
 public class Bill {
 	private Integer billId, studentId;
 	private Double billAmount, dueAmount;
 	private LocalDate billDate;
 	private Boolean paymentStatus;
 
+	@OneToOne
+	@JoinColumn(name = "student_id")
+	private Student student;
 	public Bill() {
 		System.out.println("in def Bill Ctor");
 	}
@@ -22,7 +27,8 @@ public class Bill {
 		this.billDate = billDate;
 		this.paymentStatus = paymentStatus;
 	}
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getBillId() {
 		return billId;
 	}

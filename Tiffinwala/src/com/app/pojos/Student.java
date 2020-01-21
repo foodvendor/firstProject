@@ -1,87 +1,108 @@
 package com.app.pojos;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student")
 public class Student {
 
-	private Integer ID,Age,CdacBranchId,AddressId;
-	private String Name,Email,Gender,Password;
+	private Integer iD, age, cdacBranchId;
+	private String name, email, gender, password;
+
+	@ManyToOne()
+	@JoinColumn(name = "cdac_branch_id")
+	private CdacBranch cdacBranch;
 	
+	@ManyToOne()
+	@JoinColumn(name = "address_id")
+	private Integer addressId;
 	public Student() {
 		System.out.println("In default ctor");
 	}
-	
-	public Student(Integer age, Integer cdacBranchId, Integer addressId, String name, String email, String gender) {
+
+	public Student(Integer iD, Integer age, Integer cdacBranchId, Integer addressId, String name, String email,
+			String gender, String password) {
 		super();
-		Age = age;
-		CdacBranchId = cdacBranchId;
-		AddressId = addressId;
-		Name = name;
-		Email = email;
-		Gender = gender;
+		this.iD = iD;
+		this.age = age;
+		this.cdacBranchId = cdacBranchId;
+		this.addressId = addressId;
+		this.name = name;
+		this.email = email;
+		this.gender = gender;
+		this.password = password;
 	}
 
-	public Integer getID() {
-		return ID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer getiD() {
+		return iD;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setiD(Integer iD) {
+		this.iD = iD;
 	}
 
 	public Integer getAge() {
-		return Age;
+		return age;
 	}
 
 	public void setAge(Integer age) {
-		Age = age;
+		this.age = age;
 	}
 
 	public Integer getCdacBranchId() {
-		return CdacBranchId;
+		return cdacBranchId;
 	}
 
 	public void setCdacBranchId(Integer cdacBranchId) {
-		CdacBranchId = cdacBranchId;
+		this.cdacBranchId = cdacBranchId;
 	}
 
 	public Integer getAddressId() {
-		return AddressId;
+		return addressId;
 	}
 
 	public void setAddressId(Integer addressId) {
-		AddressId = addressId;
+		this.addressId = addressId;
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Student [iD=" + iD + ", age=" + age + ", cdacBranchId=" + cdacBranchId + ", addressId=" + addressId
+				+ ", name=" + name + ", email=" + email + ", gender=" + gender + "]";
+	}
+
 }

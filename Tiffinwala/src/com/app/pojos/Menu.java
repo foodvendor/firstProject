@@ -1,5 +1,8 @@
 package com.app.pojos;
 
+import javax.persistence.*;
+@Entity
+@Table(name = "menu")
 public class Menu {
 	private Integer menuId, chapati;
 	private String subji, rice, dal, salad, sweetDish, chatni, pickle;
@@ -21,7 +24,8 @@ public class Menu {
 		this.chatni = chatni;
 		this.pickle = pickle;
 	}
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getMenuId() {
 		return menuId;
 	}
